@@ -2,6 +2,8 @@
 
 **UCL-trained physicist building agentic systems, AI evaluations and reliable AI applications.**
 
+BSc Physics and Postgraduate Certificate in Physics (Distinction), UCL · London
+
 I turn quantitative and operational problems into working software, then evaluate where the systems succeed, fail, or should defer to deterministic methods. My current focus is tool-using agents, reproducible evaluation and structured specialist-agent workflows.
 
 **Engineering approach:** I define the problem, architecture, evaluation criteria and acceptance checks, then review and test changes against them. I keep research and change logs for substantial projects so design decisions, failures and implementation changes remain inspectable.
