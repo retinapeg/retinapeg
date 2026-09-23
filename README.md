@@ -4,7 +4,7 @@
 
 I turn quantitative and operational problems into working software, then evaluate where the systems succeed, fail, or should defer to deterministic methods. My current focus is tool-using agents, reproducible evaluation and structured specialist-agent workflows.
 
-**AI-assisted engineering:** I frame the problems, make design decisions and define evaluation criteria. Claude Code and Codex write much of the code, tests and documentation at my direction and cross-review each other's work; where a repository records it, the README states who did what and how it was verified.
+**Engineering approach:** I define the problem, architecture, evaluation criteria and acceptance checks, then review and test changes against them. I keep research and change logs for substantial projects so design decisions, failures and implementation changes remain inspectable.
 
 ### Start here
 
