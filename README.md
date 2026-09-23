@@ -1,19 +1,26 @@
 # Leo Aarons-Ditson
 
-Theoretical Physics (UCL) · London · looking for AI engineering and data science roles
+**UCL-trained physicist building agentic systems, AI evaluations and reliable AI applications.**
 
-I build AI and data systems that are tested and evaluated, and I write down what they don't show. I treat model output as a proposal: it's grounded against evidence, validated against a schema and checked deterministically before anything relies on it.
+I turn quantitative and operational problems into working software, then evaluate where the systems succeed, fail, or should defer to deterministic methods. My current focus is tool-using agents, reproducible evaluation and structured specialist-agent workflows.
 
-**How I work with AI:** I frame the problem, design the evaluations and acceptance checks, and review every change. Claude Code and Codex write much of the implementation. Each repo says how it was built.
+**AI-assisted engineering:** I frame the problems, make design decisions and define evaluation criteria. Claude Code and Codex write much of the code, tests and documentation at my direction and cross-review each other's work; where a repository records it, the README states who did what and how it was verified.
 
 ### Start here
 
-| Project | What it is | Result |
+| Project | Research question / system | Evidence and current focus |
 |---|---|---|
-| [fleetcast](https://github.com/retinapeg/fleetcast) | 30-minute NYC taxi demand forecasting | Poisson gradient-boosted trees beat persistence on a chronological holdout: MAE 10.83 vs 14.29 |
-| [FundOps Control Room](https://github.com/retinapeg/YLOOKUP) | Capital-call reconciliation with LLM extraction | A field is kept only if its quoted evidence is on the cited page. 27-case fixture eval: 267/270 fields exact, 12/12 exceptions caught |
-| [agent-workflow-orchestrator](https://github.com/retinapeg/agent-workflow-orchestrator) | Claude and Codex solve the same task in isolated Git worktrees and review each other | Deterministic scoring picks the winner; 150 offline tests |
+| [Agentic Physics Bench](https://github.com/retinapeg/agentic-physics-bench) | Does an optional line-fit tool change how Claude estimates acceleration from synthetic noisy data, versus a direct answer? | **V1 (released):** 12 held-out cases, 24 scored episodes; both conditions 12/12 correct, and the optional tool was never requested. Frozen protocol, deterministic grading, saved traces, regression tests. V1 exposed a ceiling effect and no tool uptake.<br>**V2 (planned, not run):** harder tasks, model/configuration comparisons and repeated trials; a task proposal is drafted on a research branch. |
+| [Institutional AI \| Specialist-Agent Research](https://github.com/retinapeg/institutional-ai) | Do expert-role prompts improve performance on objectively scored specialist tasks compared with neutral prompting? | **Built:** specialist-agent prototype with independent reports, typed communication, peer challenge, preserved dissent and a hash-linked audit log. Reasoning is currently a deterministic demo provider (no model calls).<br>**Next experiment (planned, not run):** expert-role vs neutral prompts with the same model, task information, tools and inference budget, separating persona wording from extra agents, context or review rounds. |
+| [FundOps Control Room](https://github.com/retinapeg/YLOOKUP) | Evidence-grounded extraction from capital-call notices, deterministic reconciliation, review and audit trail | In model mode, extracted fields are kept only if their quoted evidence is on the cited page; `Decimal` controls; append-only decision log. Deterministic-path eval on 27 synthetic cases (0 model calls): 267/270 fields exact, 4/4 regression gates; 150 tests. |
+| [Agent Workflow Orchestrator](https://github.com/retinapeg/agent-workflow-orchestrator) | Bounded coding-agent workflows: Codex and Claude take the same task in isolated Git worktrees, then cross-review and revise | Candidates are re-checked in a fresh checkout against explicit acceptance gates and scored deterministically; nothing touches the source checkout without `integrate`. 150 offline tests, strict mypy; one live Codex-vs-Claude run documented. |
 
-**Also:** [support-triage-agent](https://github.com/retinapeg/support-triage-agent) (bounded tool-using agent on validated structured outputs) · [dronewatch](https://github.com/retinapeg/dronewatch) (Kalman tracking; 0.99 ellipse coverage through a 15 s radar outage) · [uk-orbit-guard](https://github.com/retinapeg/uk-orbit-guard) (satellite collision avoidance, cross-entropy-method policy search) · [schrodinger-harmonic-demo](https://github.com/retinapeg/schrodinger-harmonic-demo) (finite-difference solver with an O(h²) convergence study)
+### More work
 
-**Stack:** Python, NumPy/SciPy, pandas, scikit-learn, PyTorch, Pydantic, FastAPI, Streamlit, pytest, mypy, GitHub Actions · Claude Code, Codex, OpenAI and Anthropic APIs
+- [fleetcast](https://github.com/retinapeg/fleetcast): 30-minute NYC yellow-taxi pickup forecasting; Poisson gradient-boosted trees beat persistence on a chronological holdout (MAE 10.83 vs 14.29).
+- [dronewatch](https://github.com/retinapeg/dronewatch): Kalman tracking with chi-squared gating and NEES/NIS evaluation on synthetic sensor data.
+- [support-triage-agent](https://github.com/retinapeg/support-triage-agent): bounded tool-using support agent on validated structured outputs.
+- [uk-orbit-guard](https://github.com/retinapeg/uk-orbit-guard): hackathon prototype; cross-entropy-method policy search on synthetic satellite-encounter scenarios.
+- [schrodinger-harmonic-demo](https://github.com/retinapeg/schrodinger-harmonic-demo): finite-difference solver with an O(h²) convergence study.
+
+**Stack:** Python, NumPy/SciPy, pandas, scikit-learn, Pydantic, FastAPI, Streamlit, pytest, mypy, GitHub Actions · Claude Code, Codex, OpenAI and Anthropic APIs
