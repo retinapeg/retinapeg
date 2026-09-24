@@ -16,7 +16,7 @@ When does a model use a tool it is offered? V1 surprised me: Claude (in Claude C
 
 So for V2 I set a new question and three conditions: no, optional or required tool, across three difficulty levels. Correctness stayed at ceiling, but the model now always requested the optional tool. V2 does not isolate why: the CLI version, a prompt clause, the advisor setting and turn structure also changed.
 
-Trace review caught tools-off development calls consulting a second model through the CLI's advisor; those runs were excluded and scored calls are checked.
+Trace review caught tools-off development calls consulting a second model through the CLI's advisor; those runs were excluded and scored calls are checked. I set the no-tool baseline wording and approved every protocol before it ran.
 
 Evidence (live, one model, synthetic tasks): V1: tool requested 0/12 · V2: 162 episodes, 54/54 correct per condition, optional tool requested 54/54 · 90 offline tests in CI
 
@@ -28,7 +28,7 @@ Evidence: 150 offline tests (scripted providers), strict mypy · one self-report
 
 ### 3. [YLOOKUP](https://github.com/retinapeg/YLOOKUP) · FundOps Control Room
 
-Extracts page-cited fields from fictional capital-call notices, reconciles them with `Decimal` rules, queues breaks for a human and logs decisions append-only. Design rule: a model may read the notice; code does the arithmetic and a person clears every break.
+Extracts page-cited fields from fictional capital-call notices, reconciles them with `Decimal` rules, queues breaks for a human and logs decisions append-only. My design rule: a model may read the notice; code does the arithmetic and a person clears every break.
 
 Evidence (synthetic fixture, rule-based path, no model calls): 27 cases, 4/4 gates pass · 150 tests in CI · model mode unevaluated
 
@@ -54,4 +54,4 @@ Evidence (offline, 41 hand-labelled requests, synthetic notes, no model calls): 
 
 ## Stack
 
-Python (NumPy, pandas, scikit-learn, DuckDB), Pydantic, FastAPI, Streamlit, SQLite · pytest, mypy, ruff, GitHub Actions · Claude Code, Codex, MCP
+Python (NumPy, pandas, scikit-learn, DuckDB), Pydantic, FastAPI, Streamlit, SQLite · pytest, mypy, ruff, GitHub Actions · Agent integrations: Claude Code CLI, Codex CLI, MCP
