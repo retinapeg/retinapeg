@@ -1,28 +1,57 @@
 # Leo Aarons-Ditson
 
-**UCL-trained physicist building agentic systems, AI evaluations and reliable AI applications.**
+UCL-trained physicist building and evaluating agentic AI systems, with a focus on tool use, reliability and measurable model behaviour.
 
 BSc Physics and Postgraduate Certificate in Physics (Distinction), UCL · London
 
-I turn quantitative and operational problems into working software, then evaluate where the systems succeed, fail, or should defer to deterministic methods. My current focus is tool-using agents, reproducible evaluation and structured specialist-agent workflows.
+I turn quantitative and operational problems into working systems: bounded agent workflows, deterministic checks where a rule beats a model, and saved traces. I care where models fail as much as where they succeed. I set the questions, designs and acceptance checks; Claude Code or Codex writes most of the code.
 
-**Engineering approach:** I define the problem, architecture, evaluation criteria and acceptance checks, then review and test changes against them. I keep research and change logs for substantial projects so design decisions, failures and implementation changes remain inspectable.
+## Start here
 
-### Start here
+If you have five minutes, these four projects show the clearest picture of how I approach agentic AI.
 
-| Project | Research question / system | Evidence and current focus |
-|---|---|---|
-| [Agentic Physics Bench](https://github.com/retinapeg/agentic-physics-bench) | When does a frontier model use an available numerical tool, and how do tool policy and task difficulty affect reliability? Claude via Claude Code, with a bounded line-fit tool. | **V1 (v1.0.0):** 12 held-out cases, both conditions 12/12, optional tool never requested (ceiling effect).<br>**V2 (v2.0.0):** 162 scored episodes across no-tool, optional-tool and required-tool conditions; final answers 54/54 in each; optional tool requested 54/54 (V1: 0/12). Frozen protocols, deterministic grading, every episode saved; the design does not isolate why uptake changed. |
-| [Institutional AI \| Specialist-Agent Research](https://github.com/retinapeg/institutional-ai) | Do expert-role prompts improve performance on objectively scored specialist tasks compared with neutral prompting? | **Built:** specialist-agent prototype with independent reports, typed communication, peer challenge, preserved dissent and a hash-linked audit log. Reasoning is currently a deterministic demo provider (no model calls).<br>**Next experiment (planned, not run):** expert-role vs neutral prompts with the same model, task information, tools and inference budget, separating persona wording from extra agents, context or review rounds. |
-| [FundOps Control Room](https://github.com/retinapeg/YLOOKUP) | Evidence-grounded extraction from capital-call notices, deterministic reconciliation, review and audit trail | In model mode, extracted fields are kept only if their quoted evidence is on the cited page; `Decimal` controls; append-only decision log. Deterministic-path eval on 27 synthetic cases (0 model calls): 267/270 fields exact, 4/4 regression gates; 150 tests. |
-| [Agent Workflow Orchestrator](https://github.com/retinapeg/agent-workflow-orchestrator) | Bounded coding-agent workflows: Codex and Claude take the same task in isolated Git worktrees, then cross-review and revise | Candidates are re-checked in a fresh checkout against explicit acceptance gates and scored deterministically; nothing touches the source checkout without `integrate`. 150 offline tests, strict mypy; one live Codex-vs-Claude run documented. |
+### 1. [agentic-physics-bench](https://github.com/retinapeg/agentic-physics-bench)
 
-### More work
+When does a model use a tool it is offered? V1 surprised me: Claude (in Claude Code) answered every least-squares slope task correctly and never requested the optional fitting tool, a ceiling result.
 
-- [fleetcast](https://github.com/retinapeg/fleetcast): 30-minute NYC yellow-taxi pickup forecasting; Poisson gradient-boosted trees beat persistence on a chronological holdout (MAE 10.83 vs 14.29).
-- [dronewatch](https://github.com/retinapeg/dronewatch): Kalman tracking with chi-squared gating and NEES/NIS evaluation on synthetic sensor data.
-- [support-triage-agent](https://github.com/retinapeg/support-triage-agent): bounded tool-using support agent on validated structured outputs.
-- [uk-orbit-guard](https://github.com/retinapeg/uk-orbit-guard): hackathon prototype; cross-entropy-method policy search on synthetic satellite-encounter scenarios.
-- [schrodinger-harmonic-demo](https://github.com/retinapeg/schrodinger-harmonic-demo): finite-difference solver with an O(h²) convergence study.
+So for V2 I set a new question and three conditions: no, optional or required tool, across three difficulty levels. Correctness stayed at ceiling, but the model now always requested the optional tool. V2 does not isolate why: the CLI version, a prompt clause, the advisor setting and turn structure also changed.
 
-**Stack:** Python, NumPy/SciPy, pandas, scikit-learn, Pydantic, FastAPI, Streamlit, pytest, mypy, GitHub Actions · Claude Code, Codex, OpenAI and Anthropic APIs
+Trace review caught tools-off development calls consulting a second model through the CLI's advisor; those runs were excluded and scored calls are checked. Claude Code wrote the code and ran the frozen batches; I approved every protocol before it ran.
+
+Evidence (live, one model, synthetic tasks): V1: tool requested 0/12 · V2: 162 episodes, 54/54 correct per condition, optional tool requested 54/54 · 90 offline tests in CI
+
+### 2. [agent-workflow-orchestrator](https://github.com/retinapeg/agent-workflow-orchestrator)
+
+Codex and Claude take the same coding task in separate Git worktrees, cross-review diffs and revise in bounded rounds. Hard gates in code decide eligibility; only an explicit `integrate` touches the source repo.
+
+Evidence: 150 offline tests (scripted providers), strict mypy · one self-reported live run (n=1, VALIDATION.md): Codex's review caught a Unicode edge case that Claude fixed
+
+### 3. [YLOOKUP](https://github.com/retinapeg/YLOOKUP) · FundOps Control Room
+
+Extracts page-cited fields from fictional capital-call notices, reconciles them with `Decimal` rules, queues breaks for a human and logs decisions append-only. Design rule: a model may read the notice; code does the arithmetic and a person clears every break. Coding agents built it to my rules.
+
+Evidence (synthetic fixture, rule-based path, no model calls): 27 cases, 4/4 gates pass · 150 tests in CI · model mode unevaluated
+
+### 4. [agent-context-router](https://github.com/retinapeg/agent-context-router)
+
+A fresh agent session picks a route and note; code returns a capped, sha256-cited packet and refuses edits against a stale hash. Claude Code wrote it to my specification. Main result: a keyword-matching stand-in for the agent loses to BM25; real-model route choice is unmeasured.
+
+Evidence (offline, 41 hand-labelled requests, synthetic notes, no model calls): stand-in 21/31 vs BM25 top-1 24/31 on routable requests · live: two fresh Claude Code sessions recovered a note with the correct hash; no-tool controls could not
+
+## What these projects have in common
+
+- Behaviour, not just answers: which tool the model called, what it relayed, where it broke.
+- Bounded autonomy: models propose; code and people decide.
+- Measured iteration: frozen protocols and baselines; ceilings and losses reported.
+- Software that survives inspection: saved traces, hashes, append-only logs, offline tests.
+
+## More work
+
+- [Role-prompting pilot](https://github.com/retinapeg/institutional-workbench/tree/v0.3-benchmark-lab/benchmarks/results) (institutional-workbench, branch `v0.3-benchmark-lab`): 96 calls, Claude and Codex CLIs, synthetic tasks. No specialist-role benefit was established, and 33 of 96 calls failed at the protocol layer, mostly Markdown-fenced JSON and timeouts.
+- [fleetcast](https://github.com/retinapeg/fleetcast): NYC taxi-pickup forecasting on public data; boosted trees beat persistence on a chronological holdout (MAE 10.83 vs 14.29). No LLM.
+- [dronewatch](https://github.com/retinapeg/dronewatch): Kalman multi-target tracking through sensor dropouts on synthetic data; NEES/NIS consistency checks, failure cases reported.
+- [institutional-ai](https://github.com/retinapeg/institutional-ai): specialist-agent prototype (peer challenge, preserved dissent, hash-linked audit log) on a deterministic demo provider; no model calls yet.
+
+## Stack
+
+Python (NumPy, pandas, scikit-learn, DuckDB), Pydantic, FastAPI, Streamlit, SQLite · pytest, mypy, ruff, GitHub Actions · Claude Code, Codex, MCP
