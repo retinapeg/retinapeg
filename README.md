@@ -4,7 +4,7 @@ UCL-trained physicist building and evaluating agentic AI systems, with a focus o
 
 BSc Physics and Postgraduate Certificate in Physics (Distinction), UCL · London
 
-I turn quantitative and operational problems into working systems: bounded agent workflows, deterministic checks where a rule beats a model, and saved traces. I care where models fail as much as where they succeed. I set the questions, designs and acceptance checks; Claude Code or Codex writes most of the code.
+I turn quantitative and operational problems into working systems: bounded agent workflows, deterministic checks where a rule beats a model, and saved traces. I care where models fail as much as where they succeed.
 
 ## Start here
 
@@ -16,7 +16,7 @@ When does a model use a tool it is offered? V1 surprised me: Claude (in Claude C
 
 So for V2 I set a new question and three conditions: no, optional or required tool, across three difficulty levels. Correctness stayed at ceiling, but the model now always requested the optional tool. V2 does not isolate why: the CLI version, a prompt clause, the advisor setting and turn structure also changed.
 
-Trace review caught tools-off development calls consulting a second model through the CLI's advisor; those runs were excluded and scored calls are checked. Claude Code wrote the code and ran the frozen batches; I approved every protocol before it ran.
+Trace review caught tools-off development calls consulting a second model through the CLI's advisor; those runs were excluded and scored calls are checked.
 
 Evidence (live, one model, synthetic tasks): V1: tool requested 0/12 · V2: 162 episodes, 54/54 correct per condition, optional tool requested 54/54 · 90 offline tests in CI
 
@@ -28,13 +28,13 @@ Evidence: 150 offline tests (scripted providers), strict mypy · one self-report
 
 ### 3. [YLOOKUP](https://github.com/retinapeg/YLOOKUP) · FundOps Control Room
 
-Extracts page-cited fields from fictional capital-call notices, reconciles them with `Decimal` rules, queues breaks for a human and logs decisions append-only. Design rule: a model may read the notice; code does the arithmetic and a person clears every break. Coding agents built it to my rules.
+Extracts page-cited fields from fictional capital-call notices, reconciles them with `Decimal` rules, queues breaks for a human and logs decisions append-only. Design rule: a model may read the notice; code does the arithmetic and a person clears every break.
 
 Evidence (synthetic fixture, rule-based path, no model calls): 27 cases, 4/4 gates pass · 150 tests in CI · model mode unevaluated
 
 ### 4. [agent-context-router](https://github.com/retinapeg/agent-context-router)
 
-A fresh agent session picks a route and note; code returns a capped, sha256-cited packet and refuses edits against a stale hash. Claude Code wrote it to my specification. Main result: a keyword-matching stand-in for the agent loses to BM25; real-model route choice is unmeasured.
+A fresh agent session picks a route and note; code returns a capped, sha256-cited packet and refuses edits against a stale hash. Main result: a keyword-matching stand-in for the agent loses to BM25; real-model route choice is unmeasured.
 
 Evidence (offline, 41 hand-labelled requests, synthetic notes, no model calls): stand-in 21/31 vs BM25 top-1 24/31 on routable requests · live: two fresh Claude Code sessions recovered a note with the correct hash; no-tool controls could not
 
