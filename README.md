@@ -1,5 +1,7 @@
 # Leo Aarons-Ditson
 
+📄 [CV](./Leonard_Aarons-Ditson_CV.pdf)
+
 UCL-trained physicist building and evaluating agentic AI systems, with a focus on tool use, reliability and measurable model behaviour.
 
 BSc Physics and Postgraduate Certificate in Physics (Distinction), UCL · London
