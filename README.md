@@ -1,59 +1,20 @@
 # Leo Aarons-Ditson
 
-📄 [CV](./Leonard_Aarons-Ditson_CV.pdf)
+UCL-trained physicist (BSc, PGCert with Distinction) · London · [CV](./Leonard_Aarons-Ditson_CV.pdf)
 
-UCL-trained physicist building and evaluating agentic AI systems, with a focus on tool use, reliability and measurable model behaviour.
+I build AI/ML systems and small experiments around agents, reliability and quantitative problems. Most start as a question, and I keep the answer even when it's "this test couldn't tell".
 
-BSc Physics and Postgraduate Certificate in Physics (Distinction), UCL · London
+## Current focus
 
-I turn quantitative and operational problems into working systems: bounded agent workflows, deterministic checks where a rule beats a model, and saved traces. I care where models fail as much as where they succeed.
+- **`agent_reliability_lab`** (in progress, not public yet): does an independent AI reviewer catch bugs in coding-agent solutions that the acceptance tests miss, and what does that oversight cost?
 
-## Start here
+## Selected work
 
-If you have five minutes, these four projects show the clearest picture of how I approach agentic AI.
+- **[agentic-physics-bench](https://github.com/retinapeg/agentic-physics-bench)**: a tool-use experiment where accuracy hit the ceiling, but a trace audit found 31 of 48 "no-tool" development calls quietly consulting a second model.
+- **[agent-workflow-orchestrator](https://github.com/retinapeg/agent-workflow-orchestrator)**: Codex and Claude build the same task and review each other's diffs; in the one live run, Codex caught a Unicode bug that Claude then fixed.
+- **[institutional-workbench](https://github.com/retinapeg/institutional-workbench)**: Claude and Codex take small repo changes from assessment to tested patch; in a 96-call experiment, expert-role prompts showed no role-specific benefit.
+- **[fleetcast](https://github.com/retinapeg/fleetcast)**: NYC taxi-pickup forecasting on public data, where boosted trees cut MAE by 24% against persistence on a held-out fortnight.
 
-### 1. [agentic-physics-bench](https://github.com/retinapeg/agentic-physics-bench)
+## Other builds
 
-When does a model use a tool it is offered? V1 surprised me: Claude (in Claude Code) answered every least-squares slope task correctly and never requested the optional fitting tool, a ceiling result.
-
-So for V2 I set a new question and three conditions: no, optional or required tool, across three difficulty levels. Correctness stayed at ceiling, but the model now always requested the optional tool. V2 does not isolate why: the CLI version, a prompt clause, the advisor setting and turn structure also changed.
-
-Trace review caught tools-off development calls consulting a second model through the CLI's advisor; those runs were excluded and scored calls are checked. I set the no-tool baseline wording and approved every protocol before it ran.
-
-Evidence (live, one model, synthetic tasks): V1: tool requested 0/12 · V2: 162 episodes, 54/54 correct per condition, optional tool requested 54/54 · 90 offline tests in CI
-
-### 2. [agent-workflow-orchestrator](https://github.com/retinapeg/agent-workflow-orchestrator)
-
-Codex and Claude take the same coding task in separate Git worktrees, cross-review diffs and revise in bounded rounds. Hard gates in code decide eligibility; only an explicit `integrate` touches the source repo.
-
-Evidence: 150 offline tests (scripted providers), strict mypy · one self-reported live run (n=1, VALIDATION.md): Codex's review caught a Unicode edge case that Claude fixed
-
-### 3. [YLOOKUP](https://github.com/retinapeg/YLOOKUP) · FundOps Control Room
-
-Extracts page-cited fields from fictional capital-call notices, reconciles them with `Decimal` rules, queues breaks for a human and logs decisions append-only. My design rule: a model may read the notice; code does the arithmetic and a person clears every break.
-
-Evidence (synthetic fixture, rule-based path, no model calls): 27 cases, 4/4 gates pass · 150 tests in CI · model mode unevaluated
-
-### 4. [agent-context-router](https://github.com/retinapeg/agent-context-router)
-
-A fresh agent session picks a route and note; code returns a capped, sha256-cited packet and refuses edits against a stale hash. Main result: a keyword-matching stand-in for the agent loses to BM25; real-model route choice is unmeasured.
-
-Evidence (offline, 41 hand-labelled requests, synthetic notes, no model calls): stand-in 21/31 vs BM25 top-1 24/31 on routable requests · live: two fresh Claude Code sessions recovered a note with the correct hash; no-tool controls could not
-
-## What these projects have in common
-
-- Behaviour, not just answers: which tool the model called, what it relayed, where it broke.
-- Bounded autonomy: models propose; code and people decide.
-- Measured iteration: frozen protocols and baselines; ceilings and losses reported.
-- Software that survives inspection: saved traces, hashes, append-only logs, offline tests.
-
-## More work
-
-- [Role-prompting pilot](https://github.com/retinapeg/institutional-workbench/tree/v0.3-benchmark-lab/benchmarks/results) (institutional-workbench, branch `v0.3-benchmark-lab`): 96 calls, Claude and Codex CLIs, synthetic tasks. No specialist-role benefit was established, and 33 of 96 calls failed at the protocol layer, mostly Markdown-fenced JSON and timeouts.
-- [fleetcast](https://github.com/retinapeg/fleetcast): NYC taxi-pickup forecasting on public data; boosted trees beat persistence on a chronological holdout (MAE 10.83 vs 14.29). No LLM.
-- [dronewatch](https://github.com/retinapeg/dronewatch): Kalman multi-target tracking through sensor dropouts on synthetic data; NEES/NIS consistency checks, failure cases reported.
-- [institutional-ai](https://github.com/retinapeg/institutional-ai): specialist-agent prototype (peer challenge, preserved dissent, hash-linked audit log) on a deterministic demo provider; no model calls yet.
-
-## Stack
-
-Python (NumPy, pandas, scikit-learn, DuckDB), Pydantic, FastAPI, Streamlit, SQLite · pytest, mypy, ruff, GitHub Actions · Agent integrations: Claude Code CLI, Codex CLI, MCP
+[agent-context-router](https://github.com/retinapeg/agent-context-router) · [institutional-ai](https://github.com/retinapeg/institutional-ai) · [dronewatch](https://github.com/retinapeg/dronewatch) · [before-coffee](https://github.com/retinapeg/before-coffee) · [careerops-ai](https://github.com/retinapeg/careerops-ai) · [YLOOKUP](https://github.com/retinapeg/YLOOKUP) · [support-triage-agent](https://github.com/retinapeg/support-triage-agent) · [canton-collateral-optimizer](https://github.com/retinapeg/canton-collateral-optimizer) · [uk-orbit-guard](https://github.com/retinapeg/uk-orbit-guard) · [schrodinger-harmonic-demo](https://github.com/retinapeg/schrodinger-harmonic-demo)
