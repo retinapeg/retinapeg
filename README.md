@@ -10,7 +10,7 @@ The numbers below are the committed counts; each linked README has an evidence t
 
 ### [agentic-physics-bench](https://github.com/retinapeg/agentic-physics-bench) · completed, frozen
 
-Does an offered tool change how a model solves a problem, and can the trace prove that the system scored was the system declared? Correctness hit the ceiling in every condition (54/54 × 3), so the score said nothing. A per-call trace audit then found that a server-side advisor that consults a second model had been active in 31 of 48 development calls made with the CLI's tools switched off. Those stages were voided, the pathway was disabled, per-call model-identity checks were added, and all 324 held-out calls came back clean. Correct outputs alone did not prove that the declared system was the one being evaluated.
+Does an offered tool change how a model solves a problem, and can the trace prove that the system scored was the system declared? Correctness hit the ceiling in every condition (54/54 × 3), so the score said nothing. A per-call trace audit during development found that a server-side advisor that consults a second model had been active in 31 of the 48 unique calls across the two development stages run before it was disabled, all made with the CLI's tools switched off. Those two stages were voided, the pathway was disabled, per-call model-identity checks were added, and all 324 held-out calls came back clean. Correct outputs alone did not prove that the declared system was the one being evaluated.
 
 ### [agent_reliability_lab](https://github.com/retinapeg/agent_reliability_lab) · first run complete
 
