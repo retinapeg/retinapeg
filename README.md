@@ -10,7 +10,7 @@ I build agentic AI systems and then test whether they can be trusted. The patter
 
 ### [Mathematical-proof-revamp](https://github.com/retinapeg/Mathematical-proof-revamp) · Reinvent the Wheel hackathon, 17 October 2026
 
-Isabelle/HOL in stock VS Code, with an agent that writes proofs the kernel checks. A VS Code extension (goal state at the cursor, inline errors, a proof graph that turns green step by step as the kernel accepts them) and an MCP server exposing the live proof state so Claude Code or Codex can write a proof one step at a time. The agent proposes; only the kernel says proved. Built in one day; implementation solo, concept with Alex Hyman. An evaluation of the agent over a few hundred library lemmas against a no-LLM tactic baseline is running now; the results table goes here when it finishes.
+Isabelle/HOL in stock VS Code, with an agent that writes proofs the kernel checks. A VS Code extension (goal state at the cursor, inline errors, a proof graph that turns green step by step as the kernel accepts them) and an MCP server exposing the live proof state so Claude Code or Codex can write a proof one step at a time. The agent proposes; only the kernel says proved. Built in one day; implementation solo, concept with Alex Hyman.
 
 ### Hackathon builds, 2026
 
@@ -21,6 +21,10 @@ Isabelle/HOL in stock VS Code, with an agent that writes proofs the kernel check
 ## Featured work
 
 The numbers below are the committed counts; each linked README has an evidence table pointing at the files that hold them.
+
+### [partner-funnel-lab](https://github.com/retinapeg/partner-funnel-lab) · which method tells the truth about a staggered rollout?
+
+When a feature rolls out partner by partner and the biggest partners go first, how much of the measured lift is the feature? A simulated partner-referred lending funnel with the answer baked in (40 partners, 137,370 journeys; pre-qualification rolled out in an order correlated with partner size, +6 pp true effect on application completion, +2 pp on drawdown; a notification with a delayed 90-day outcome, +4 pp), and estimators tested against that truth. Naive before/after overstates the feature by about 4 points on both outcomes; two-way fixed-effects difference-in-differences lands within half a point (5.55 vs 6.00, 2.17 vs 2.00); the randomised A/B on the notification is unbiased (4.12 vs 4.00); a hierarchical Bayesian model's partner-level intervals cover 92.5% of the true rates. The README table is generated from the passing tests, not typed. Simulation only, with the staggered-adoption caveats on TWFE stated; FastAPI endpoints for funnel, power and analysis.
 
 ### [fleetcast](https://github.com/retinapeg/fleetcast) · demand forecasting on real data
 
